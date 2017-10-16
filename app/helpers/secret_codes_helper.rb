@@ -1,0 +1,3 @@
+module SecretCodesHelper
+	
+end
