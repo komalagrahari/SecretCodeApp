@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get 'welcome/index'
 
   resources :secret_codes
   devise_for :users, controllers: { sessions: 'users/sessions', registrations: 'users/registrations' }
@@ -10,5 +9,6 @@ authenticated :user, ->(u) { u.Admin? } do
   end
   
 root to: 'welcome#index'
+  get 'welcome/index'
 
 end

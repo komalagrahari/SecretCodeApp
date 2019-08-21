@@ -2,9 +2,9 @@
 
 <h1>Secret Codes</h1>
 <%= form_with(controler: :secret_codes, local: true, action: :create) do |form| %>
-  <div class="actions">
+  <div class="actions" style="display: flex;">
     <%= form.submit "Generate More SecretCode", type: "submit", class: "btn btn-primary btn-embossed save-doc-action" %>
-    <%= select_tag "secret_code_count", options_for_select([1, 10, 20, 30], selected: 10), class:"form-control wth" %>
+    <%= select_tag "secret_code_count", options_for_select([1, 10, 20, 50, 100], selected: 10), class:"form-control wth-100" %>
   </div>
 <% end %>
 <table class="table table-bordered">
@@ -12,7 +12,6 @@
     <tr>
       <th>UserEmail</th>
       <th>SecretCode</th>
-      <th colspan="3"></th>
     </tr>
   </thead>
   <tbody>
