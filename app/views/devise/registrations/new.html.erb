@@ -1,83 +1,36 @@
 <div class="border-form-div">
   <h2>Sign up</h2>
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
-  <div class="field">
-    <%= f.label :first_name %><br />
-    <%= f.text_field :first_name, autofocus: true %>
-  </div>
-  <div class="field">
-    <%= f.label :last_name %><br />
-    <%= f.text_field :last_name %>
-  </div>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
-  <div class="field">
-    <%= f.label :secret_code %><br />
-    <%= f.text_field :code_string, required: true, onchange: "availableCodes()" %>
-    <%= f.label :available_secret_code %> <span  id='availableCodes' ><%= availabe_secret_code %></span>
-  </div>
-  <div class="actions">
-    <button onclick="checkValidation()" class="btn btn-primary">Sign up</button>
-  </div>
-<% end %>
+    <div class="field">
+      <%= f.label :first_name %><br />
+      <%= f.text_field :first_name, autofocus: true %>
+    </div>
+    <div class="field">
+      <%= f.label :last_name %><br />
+      <%= f.text_field :last_name %>
+    </div>
+    <div class="field">
+      <%= f.label :email %><br />
+      <%= f.email_field :email %>
+    </div>
+    <div class="field">
+      <%= f.label :password %>
+      <% if @minimum_password_length %>
+      <em>(<%= @minimum_password_length %> characters minimum)</em>
+      <% end %><br />
+      <%= f.password_field :password, autocomplete: "off" %>
+    </div>
+    <div class="field">
+      <%= f.label :password_confirmation %><br />
+      <%= f.password_field :password_confirmation, autocomplete: "off" %>
+    </div>
+    <div class="field">
+      <%= f.label :secret_code %><br />
+      <%= f.text_field :code_string, required: true, onchange: "availableCodes()" %>
+      <%= f.label :available_secret_code %> <span  id='availableCodes' ><%= availabe_secret_code %></span>
+    </div>
+    <div class="actions">
+      <button onclick="checkValidation()" class="btn btn-primary">Sign up</button>
+    </div>
+  <% end %>
 </div>
-<script type="text/javascript">
-  function availableCodes(){
-     var availableCodes = $('#availableCodes').html().split(', ')
-     if(jQuery.inArray($('#user_code_string').val(), availableCodes) != -1){
-      return true;
-     }
-    alert('Please select available Secret Codes')
-     return false;
-  }
-  function checkValidation(){
-    var first_name = $('#user_first_name').val()
-    var last_name = $('#user_last_name').val()
-    var pwd = $('#user_password').val()
-    var confirm_pwd = $('#user_password_confirmation').val()
-    var email = $('#user_email').val()
-    var code = $('#user_code_string').val()
-    if(first_name == ''){
-      alert('First Name should not be blank.')
-      return false;
-    }else if(email == ''){
-      alert('Email should not be blank.')
-      return false;
-    }else if(pwd == ''){
-      alert('Password should not be blank.')
-      return false;
-    }else if(confirm_pwd == ''){
-      alert('Confirm Password should not be blank.')
-      return false;
-    }else if(code == ''){
-      alert('Secret Code should not be blank.')
-      return false;
-    }else{
-      if(confirm_pwd != pwd){
-        alert('Confirm Password should be same as Password.')
-        return false;
-      }else{
-        var is_submit = availableCodes()
-        if(is_submit)
-        $('form').submit();
-      }
-    }
-  }
-</script>
-

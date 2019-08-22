@@ -72,6 +72,6 @@ class SecretCodesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def secret_code_params
-      params.fetch(:secret_code_count, {})
+      params.require(:secret_code).permit(:code_string, :user_id)
     end
 end
